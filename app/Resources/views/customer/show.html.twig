@@ -1,0 +1,97 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="page-wrapper" style="height: 100%;">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xs-offset-0 col-sm-offset-0 toppad" >
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            {#<div class="col-md-2 col-lg-2 " align="center"><br>#}
+                                {#<img alt="User Pic" src="/uploads<?php echo $image; ?>" style="border-radius: 7px; width:100%;">#}
+                            {#</div>#}
+                            <div class="col-md-9 col-lg-9 patient-info">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <table class="table table-user-information">
+            <h2 style="float:left; padding-left: 50px; padding-top: 20px" >Customer ID: {{ customer.id }}</h2>
+            <div style="padding-top: 200px; padding-right: 50px;padding-left: 50px"><input type="text" class="form-control" value="{{ customer.imageUrl }}" readonly></div>
+        </table>
+    </div>
+    <div class="col-xs-6">
+        <table class="table table-user-information">
+
+            <tbody>
+            <th>Personal info</th>
+            <tr>
+                <th>First name</th>
+                <td><input type="text" class="form-control" value="{{ customer.firstName }}" readonly></td>
+            </tr>
+            <tr>
+                <th>Last name</th>
+                <td><input type="text" class="form-control" value="{{ customer.lastName }}" readonly></td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td><input type="text" class="form-control" value="{{ customer.gender }}" readonly></td>
+            </tr>
+
+            <tr>
+                <th>Date of birth</th>
+                <td><input type="text" class="form-control" value="{% if customer.dateOfBirth %}{{ customer.dateOfBirth|date('Y-m-d') }}{% endif %}" readonly></td>
+            </tr>
+
+            <tr>
+                <th>Email</th>
+                <td><input type="text" class="form-control" value="{{ customer.email }}" readonly></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-xs-6">
+        <table class="table table-user-information">
+            <tbody>
+
+            <th>Adress info</th>
+            <td style="font-weight:600;"></td>
+
+            <tr>
+                <th>Adress</th>
+                <td><input type="text" class="form-control" value="{{ customer.adress }}" readonly></td>
+            </tr>
+            <tr>
+                <th>Zipcode</th>
+                <td><input type="text" class="form-control" value="{{ customer.zipcode }}" readonly></td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td><input type="text" class="form-control" value="{{ customer.city }}" readonly></td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td><input type="text" class="form-control" value="{{ customer.country }}" readonly></td>
+            </tr>
+
+            <tr>
+                <th>Telephonenumber</th>
+                <td><input type="text" class="form-control" value="{{ customer.telephoneNumber }}" readonly></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-info" href="{{ path('customer_edit', { 'id': customer.id }) }}">Bewerk</a></td>
+                <td><a class="btn btn-info" href="{{ path('customer_index') }}">Terug naar het overzicht</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
