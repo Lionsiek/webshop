@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: lions
+ * admin: lions
  * Date: 7-6-2018
  * Time: 13:06
  */
@@ -13,7 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use webshopBundle\Entity\Factuur;
 use webshopBundle\Entity\products;
 use webshopBundle\Entity\row;
-use webshopBundle\Entity\User;
+use webshopBundle\Entity\admin;
 
 
 /**
@@ -104,10 +104,10 @@ class cartController extends Controller
         $cart = $session->get('cartController', array());
         // aanmaken factuur regel.
         $em = $this->getDoctrine()->getManager();
-        $userAdress = $em->getRepository('WebshopBundle:User')->findOneBy(array('id' => $this->getUser()->getId()));
+        $userAdress = $em->getRepository('WebshopBundle:admin')->findOneBy(array('id' => $this->getUser()->getId()));
         // new UserAdress if no UserAdress found...
         if (!$userAdress) {
-            $userAdress = new User();
+            $userAdress = new admin();
             $userAdress->setId($this->getUser()->getId());
         }
         $factuur = new Factuur();

@@ -1,5 +1,5 @@
 <?php
-// src/WebshopBundle/Entity/User.php
+// src/WebshopBundle/Entity/admin.php
 namespace webshopBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
  */
-class User extends BaseUser
+class admin extends BaseUser
 {
     /**
      * @ORM\Id

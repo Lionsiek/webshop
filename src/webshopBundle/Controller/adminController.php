@@ -3,7 +3,7 @@
 
 namespace webshopBundle\Controller;
 
-use webshopBundle\Entity\User;
+use webshopBundle\Entity\admin;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -13,22 +13,22 @@ use Symfony\Component\HttpFoundation\Request;
 
 
 
-class userController extends Controller
+class adminController extends Controller
 {
     /**
      * Lists all customer entities.
      *
-     * @Route("/users", name="users")
+     * @Route("/admins", name="admins")
      * @Method("GET")
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $users = $em->getRepository('webshopBundle:User')->findAll();
+        $users = $em->getRepository('webshopBundle:admin')->findAll();
 
-        return $this->render('@webshop/users/index.html.twig', array(
-            'users' => $users,
+        return $this->render('@webshop/admin/index.html.twig', array(
+            'user' => $users,
         ));
     }
 
@@ -36,7 +36,7 @@ class userController extends Controller
     /**
      * Lists all invoice entities.
      *
-     * @Route("/{id}", name="role_action")
+     * @Route("/admins/{id}", name="role_action_admins")
      * @Method("GET")
      */
     public function roleAction($id)
@@ -44,7 +44,7 @@ class userController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         //Get the user with name admin
-        $user= $em->getRepository("webshopBundle:User")->find($id);
+        $user= $em->getRepository("webshopBundle:admin")->find($id);
 
         if ($user) {
             if (in_array("ROLE_SUPER_ADMIN", $user->getRoles())  ) {
@@ -58,10 +58,10 @@ class userController extends Controller
             $em->persist ($user);
             $em->flush ();
         }
-        $users = $em->getRepository('webshopBundle:User')->findAll();
+        $users = $em->getRepository('webshopBundle:admin.php')->findAll();
 
-        return $this->render('@webshop/users/index.html.twig', array(
-            'users' => $users,
+        return $this->render('@webshop/admin/index.html.twig', array(
+            'user' => $users,
         ));
     }
 

@@ -3,3 +3,17 @@
     vertical-align: middle;
 
 }
+
+.nav-link{
+
+    display: block;
+    padding: 1rem 1rem;
+
+}
+
+a {
+    color: #FFFFFF;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
