@@ -8,11 +8,12 @@
 
 namespace Tests\webshopBundle\Controller;
 namespace webshopBundle\Controller;
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use webshopBundle\Entity\Factuur;
 use webshopBundle\Entity\products;
-use webshopBundle\Entity\row;
+use webshopBundle\Entity\Regel;
 use webshopBundle\Entity\admin;
 
 
@@ -104,15 +105,15 @@ class cartController extends Controller
         $cart = $session->get('cartController', array());
         // aanmaken factuur regel.
         $em = $this->getDoctrine()->getManager();
-        $userAdress = $em->getRepository('WebshopBundle:admin')->findOneBy(array('id' => $this->getUser()->getId()));
+        $userAdress = $em->getRepository('AppBundle:User')->findOneBy(array('id' => $this->getUser()->getId()));
         // new UserAdress if no UserAdress found...
         if (!$userAdress) {
-            $userAdress = new admin();
+            $userAdress = new User();
             $userAdress->setId($this->getUser()->getId());
         }
         $factuur = new Factuur();
-        $factuur->setDatum(new \DateTime("now"));
-        $factuur->setKlantId($this->getUser());
+        $factuur->setdate(new \DateTime("now"));
+        $factuur->setuserId($this->getUser());
         //var_dump($cartController);
         // vullen regels met orderregels.
         // put invoice in dbase.
@@ -126,7 +127,7 @@ class cartController extends Controller
                 $regel->setFactuurId($factuur);
                 $em = $this->getDoctrine()->getManager();
                 $products = $em->getRepository('webshopBundle:products')->find($id);
-                $regel->setQuantity($quantity);
+                $regel->setAantal($quantity);
                 $regel->setProductId($products);
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($regel);
@@ -134,7 +135,7 @@ class cartController extends Controller
             }
         }
         $session->clear();
-        return $this->redirectToRoute('homepage');
+        return $this->redirectToRoute('factuur_index');
     }
     /**
      * @Route("/remove/{id}", name="cart_remove")

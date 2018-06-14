@@ -32,7 +32,7 @@
                                 <tbody>
                                 {% for customer in customers %}
                                     <tr>
-                                        <td><a href="{{ path('customer_show', { 'id': customer.id }) }}">{{ customer.id }}</a></td>
+                                        <td><a class="clickable" href="{{ path('customer_show', { 'id': customer.id }) }}">{{ customer.id }}</a></td>
                                         <td>{{ customer.firstName }}</td>
                                         <td>{{ customer.lastName }}</td>
                                         <td>{{ customer.adress }}</td>

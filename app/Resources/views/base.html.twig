@@ -3,11 +3,16 @@
     <meta charset="UTF-8" />
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets%}
+        <link rel="stylesheet" href="{{ asset('bundles/webshop/fontawesome/fontawesome-all.css') }}">
         <link rel="stylesheet" href="{{ asset('bundles/webshop/css/main.css') }}">
+
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
     <link rel="stylesheet" href="{{ asset('bundles/webshop/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/webshop/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/webshop/fontawesome/fontawesome-all.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Black|Open+Sans" rel="stylesheet">
 
 
 </head>
@@ -15,7 +20,7 @@
 
 
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-5 col-md-2 mr-0" href="#">Proefles admin panel</a>
+    <h1><a class="navbar-brand col-sm-5 col-md-2 mr-0" href="#">Proefles admin panel</a></h1>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
             <a class="nav-link" href="#">Sign out</a>
@@ -24,37 +29,81 @@
 </nav>
 
 <div class="container-fluid">
-    <div class="row" style="width: 1700px">
-        <nav class="col-md-1 d-none d-md-block bg-dark sidebar">
+    <div class="row" style="width: 1900px">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="../customer">
-                            <span data-feather="home"></span>
-                            Customers <span class="sr-only">(current)</span>
+                        <a class="nav-link active" href="#">
+
+                            Dashboard <i class="fas fa-home" style="padding-left: 150px"></i>
                         </a>
                     </li>
+                    {#<li class="nav-item">#}
+                        {#<a class="nav-link" href="../customer">#}
+                            {#<i class=fa-arrow-circle-right"></i> Customers#}
+                        {#</a>#}
+                    {#</li>#}
                     <li class="nav-item">
                         <a class="nav-link" href="../products">
-                            <span data-feather="file"></span>
+                            <span data-feather="shopping-cart"></span>
                             Products
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/admins">
-                            <span data-feather="file"></span>
+                            <span data-feather="users"></span>
                             Admins
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/user">
-                            <span data-feather="file"></span>
+                            <span data-feather="users"></span>
                             Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart">
+                            <span data-feather="layers"></span>
+                            Cart
                         </a>
                     </li>
                 </ul>
             </div>
         </nav>
+{#<div class="container-fluid">#}
+    {#<div class="row" style="width: 1850px">#}
+        {#<nav class="col-md-1 d-none d-md-block bg-dark sidebar">#}
+            {#<br>#}
+            {#<div class="sidebar-sticky">#}
+                {#<ul class="nav flex-column">#}
+                    {#<li class="nav-item">#}
+                        {#<a class="nav-link" href="../customer">#}
+                            {#<span data-feather="home"></span>#}
+                            {#<h5>Customers</h5> <span class="sr-only">(current)</span>#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li class="nav-item">#}
+                        {#<a class="nav-link" href="../products">#}
+                            {#<span data-feather="file"></span>#}
+                            {#<h5>Products</h5>#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li class="nav-item">#}
+                        {#<a class="nav-link" href="/admins">#}
+                            {#<span data-feather="file"></span>#}
+                           {#<h5> Admins</h5>#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li class="nav-item">#}
+                        {#<a class="nav-link" href="/user">#}
+                            {#<span data-feather="file"></span>#}
+                            {#<h5>Users</h5>#}
+                        {#</a>#}
+                    {#</li>#}
+                {#</ul>#}
+            {#</div>#}
+        {#</nav>#}
 
         {% block body %}
 

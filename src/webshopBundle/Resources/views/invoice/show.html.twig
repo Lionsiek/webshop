@@ -1,0 +1,164 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="page-wrapper">
+        <!-- /.row -->
+
+
+        {% if (factuur.userId == app.user) %}
+        <div class="row" style="padding: 30px">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                        <h1>Factuur {{ factuur.id }}</h1>
+                        <h2> datum: {{ factuur.date|date('d-m-Y') }}</h2>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <table width="100%" class="table table-striped table-hover" id="dataTables-example">
+                            <thead>
+                            <tr>
+                            <tr>
+                                <th>Aantal</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>product</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>prijs</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>totaal</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% set gentot = 0 %}
+                            {% for regel in regels %}
+
+                                <tr>
+                                    <td>{{ regel.aantal }}</td>
+
+                             {% for users in users %}
+
+                                    <td>{{  users.firstName }}</td>
+                                    <td>{{  users.lastName }}</td>
+
+                             {% endfor %}
+                                    {% set totaal = regel.aantal %}
+
+                                    <td>{{ regel.productId }}</td>
+
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+                                    <td>
+                                        {% for product in products %}
+                                            {% set p = regel.productId %}
+                                            {% if p.id == product.id %}
+                                                {{ product.productPrice|number_format(2) }}
+                                                {% set totaal = (totaal * product.productPrice) %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+                                    <td>{{ totaal|number_format(2) }}</td>
+                                    <td></td>
+                                    {% set gentot = (gentot + totaal) %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#<h1>Factuur {{ factuur.id }}</h1>#}
+    {#<h2> datum: {{ factuur.date|date('d-m-Y') }}</h2>#}
+
+    {#{% if (factuur.userId == app.user) %}#}
+
+        {#<div class="container-fluid">#}
+        {#<div class="side-body">#}
+        {#<table class="table table-striped pull-right">#}
+            {#<thead>#}
+            {#<tr class="table-info">#}
+                {#<td>#}
+
+                {#</td>#}
+
+                {#<td>#}
+
+                {#</td>#}
+
+                {#<td>#}
+
+                {#</td>#}
+                {#<td>#}
+                    {#<div>#}
+                        {#<button type="submit" class="btn btn-danger">Delete</button>#}
+                    {#{{ form_end(delete_form) }}#}
+                    {#</div>#}
+                {#</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Aantal</th>#}
+                {#<th>product</th>#}
+                {#<th>prijs</th>#}
+                {#<th>totaal</th>#}
+            {#</tr>#}
+            {#</thead>#}
+            {#<tbody>#}
+            {#{% set gentot = 0 %}#}
+            {#{% for regel in regels %}#}
+                {#<tr>#}
+                    {#<td>{{ regel.aantal }}</td>#}
+                    {#{% set totaal = regel.aantal %}#}
+                    {#<td>{{ regel.productId }}</td>#}
+                    {#<td>#}
+                        {#{% for product in products %}#}
+                            {#{% set p = regel.productId %}#}
+                            {#{% if p.id == product.id %}#}
+                                {#{{ product.productPrice|number_format(2) }}#}
+                                {#{% set totaal = (totaal * product.productPrice) %}#}
+                            {#{% endif %}#}
+                        {#{% endfor %}#}
+                    {#</td>#}
+                    {#<td>{{ totaal|number_format(2) }}</td>#}
+                    {#{% set gentot = (gentot + totaal) %}#}
+                {#</tr>#}
+            {#{% endfor %}#}
+            {#</tbody>#}
+        {#</table>#}
+
+            {#<div style="padding-left: 100px">#}
+            {#<a href="{{ path('factuur_index') }}">#}
+                {#<button type="button" class="btn btn-info col-lg-2 right">Back to List</button>#}
+            {#</a>#}
+            {#{% if is_granted('ROLE_ADMIN') %}#}
+                {#<a href="{{ path('factuur_edit', { 'id': factuur.id }) }}">#}
+                    {#<button type="button" class="btn btn-primary center-block col-lg-3">Edit</button>#}
+                {#</a>#}
+            {#{% endif %}#}
+            {#</div>#}
+        {#</div>#}
+
+        {#</div>#}
+        {#<h3 class="btn-block">totaal voor deze factuur = € {{ gentot|number_format(2) }}</h3></br>#}
+        {#</body>#}
+
+
+    {% else %}
+        <h2>Deze factuur is van andere klant.</h2>
+    {% endif %}
+
+{% endblock %}

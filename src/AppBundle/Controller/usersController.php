@@ -4,6 +4,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use webshopBundle\Entity\Factuur;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -36,7 +37,7 @@ class usersController extends Controller
     /**
      * Lists all invoice entities.
      *
-     * @Route("/admin/{id}", name="role_action_users")
+     * @Route("/users/{id}", name="role_action_users")
      * @Method("GET")
      */
     public function roleAction($id)

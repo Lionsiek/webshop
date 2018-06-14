@@ -188,5 +188,11 @@ class products
     {
         return $this->imageUrl;
     }
+
+
+    public function __toString()
+    {
+        return $this->getDescription();
+    }
 }
 

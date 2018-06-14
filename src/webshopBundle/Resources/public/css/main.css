@@ -1,3 +1,16 @@
+/*Used fonts:
+
+  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+
+ */
+
+body{
+
+    font-size: .975rem;
+
+}
+
 .table th, .table td{
     padding: 20px;
     vertical-align: middle;
@@ -12,8 +25,38 @@
 }
 
 a {
-    color: #FFFFFF;
+    color: #000000;
     text-decoration: none;
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
+    text-align: left;
+    /*font-family: 'Archivo Black', sans-serif;*/
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+td {
+
+    color: #000000;
+
+}
+
+.clickable{
+
+    color: #000000;
+
+}
+
+.side-body {
+    margin-left: 310px;
+}
+
+.container-fluid{
+
+    position: absolute;
+    top: 60px;
+}
+
+.table th, .table td{
+
 }
