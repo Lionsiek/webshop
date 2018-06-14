@@ -1,5 +1,5 @@
-webshop:
-    resource: "@webshopBundle/Controller/"
+intake:
+    resource: "@intakeBundle/Controller/"
     type:     annotation
     prefix:   /
 

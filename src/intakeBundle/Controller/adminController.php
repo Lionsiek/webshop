@@ -1,10 +1,9 @@
 <?php
 
 
-namespace AppBundle\Controller;
+namespace intakeBundle\Controller;
 
-use AppBundle\Entity\User;
-use intakeBundle\Entity\Factuur;
+use intakeBundle\Entity\admin;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -14,22 +13,22 @@ use Symfony\Component\HttpFoundation\Request;
 
 
 
-class usersController extends Controller
+class adminController extends Controller
 {
     /**
      * Lists all customer entities.
      *
-     * @Route("/user", name="user")
+     * @Route("/admins", name="admins")
      * @Method("GET")
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $user = $em->getRepository('AppBundle:User')->findAll();
+        $users = $em->getRepository('intakeBundle:admin')->findAll();
 
-        return $this->render('@App/user/index.html.twig', array(
-            'user' => $user,
+        return $this->render('@intake/admin/index.html.twig', array(
+            'user' => $users,
         ));
     }
 
@@ -37,7 +36,7 @@ class usersController extends Controller
     /**
      * Lists all invoice entities.
      *
-     * @Route("/users/{id}", name="role_action_users")
+     * @Route("/admins/{id}", name="role_action_admins")
      * @Method("GET")
      */
     public function roleAction($id)
@@ -45,7 +44,7 @@ class usersController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         //Get the user with name admin
-        $user= $em->getRepository("AppBundle:User")->find($id);
+        $user= $em->getRepository("intakeBundle:admin")->find($id);
 
         if ($user) {
             if (in_array("ROLE_SUPER_ADMIN", $user->getRoles())  ) {
@@ -59,9 +58,9 @@ class usersController extends Controller
             $em->persist ($user);
             $em->flush ();
         }
-        $users = $em->getRepository('AppBundle:User')->findAll();
+        $users = $em->getRepository('intakeBundle:admin.php')->findAll();
 
-        return $this->render('@App/user/index.html.twig', array(
+        return $this->render('@intake/admin/index.html.twig', array(
             'user' => $users,
         ));
     }

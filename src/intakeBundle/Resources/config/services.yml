@@ -1,0 +1,4 @@
+services:
+#    webshop.example:
+#        class: intakeBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
