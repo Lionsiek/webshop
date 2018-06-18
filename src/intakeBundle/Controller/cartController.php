@@ -11,9 +11,7 @@ namespace intakeBundle\Controller;
 use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use intakeBundle\Entity\Factuur;
-use intakeBundle\Entity\products;
-use intakeBundle\Entity\Regel;
+use intakeBundle\Entity\appointment;
 use intakeBundle\Entity\admin;
 
 
@@ -42,7 +40,7 @@ class cartController extends Controller
         if ($cart != '') {
             if (isset($cart)) {
                 $em = $this->getDoctrine()->getEntityManager();
-                $product = $em->getRepository('intakeBundle:products')->findAll();
+                $product = $em->getRepository('intakeBundle:appointment')->findAll();
             } else {
                 return $this->render('@intake/cart/index.html.twig', array(
                     'empty' => true,
@@ -65,7 +63,7 @@ class cartController extends Controller
     {
         // fetch the cartController
         $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository('intakeBundle:products')->find($id);
+        $product = $em->getRepository('appointment.php')->find($id);
         //print_r($product->getId()); die;
         $session = $this->get('request_stack')->getCurrentRequest()->getSession();
         $cart = $session->get('cartController', array());
@@ -126,7 +124,7 @@ class cartController extends Controller
                 $regel = new Regel();
                 $regel->setFactuurId($factuur);
                 $em = $this->getDoctrine()->getManager();
-                $products = $em->getRepository('intakeBundle:products')->find($id);
+                $products = $em->getRepository('appointment.php')->find($id);
                 $regel->setAantal($quantity);
                 $regel->setProductId($products);
                 $em = $this->getDoctrine()->getManager();

@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('appointment_index') }}">Back to the list</a>#}
+        {#</li>#}
+    {#</ul>#}
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Creëer Afspraak</h1>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table">
+                {{ form_start(form) }}
+                <tr>
+                    <td>Voornaam</td>
+                    <td>{{ form_widget(form.firstName) }}</td>
+                </tr>
+
+                <tr>
+                    <td>Achternaam</td>
+                    <td>{{ form_widget(form.lastName) }}</td>
+                </tr>
+
+                <tr>
+                    <td>Email</td>
+                    <td>{{ form_widget(form.email) }}</td>
+                </tr>
+                <tr>
+                    <td>Afspraak maken op:</td>
+                    <td>{{ form_widget(form.date) }}</td>
+                </tr>
+                <tr>
+                    <td>Telefoonnummer</td>
+                    <td>{{ form_widget(form.telephoneNumber) }}</td>
+                </tr>
+                <tr>
+                    <td>Motivatie</td>
+                    <td>{{ form_widget(form.description) }}</td>
+                </tr>
+
+                <tr>
+                    <td>Opleiding/Afdeling</td>
+                    <td>{{ form_widget(form.category) }}</td>
+                </tr>
+
+            </table>
+            <input class="btn btn-primary my-2" type="submit" value="Creëer" />
+            {{ form_end(form) }}
+            <a class="btn btn-info" href="{{ path('appointment_index') }}">Terug naar het overzicht</a>
+        </div>
+    </main>
+{% endblock %}

@@ -2,7 +2,7 @@
 
 namespace intakeBundle\Controller;
 
-use intakeBundle\Entity\products;
+use intakeBundle\Entity\appointment;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -14,37 +14,37 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Product controller.
  *
- * @Route("products")
+ * @Route("appointment")
  */
-class productsController extends Controller
+class appointmentController extends Controller
 {
     /**
      * Lists all product entities.
      *
-     * @Route("/", name="products_index")
+     * @Route("/", name="appointment_index")
      * @Method("GET")
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $products = $em->getRepository('intakeBundle:products')->findAll();
+        $appointment = $em->getRepository('intakeBundle:appointment')->findAll();
 
-        return $this->render('products/index.html.twig', array(
-            'products' => $products,
+        return $this->render('appointment/index.html.twig', array(
+            'appointment' => $appointment,
         ));
     }
 
     /**
      * Creates a new product entity.
      *
-     * @Route("/new", name="products_new")
+     * @Route("/new", name="appointment_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
-        $product = new products();
-        $form = $this->createForm('intakeBundle\Form\productsType', $product);
+        $product = new appointment();
+        $form = $this->createForm('intakeBundle\Form\appointmentType', $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -68,12 +68,12 @@ class productsController extends Controller
                 $em->flush();
 
 
-                return $this->redirectToRoute('products_show', array('id' => $product->getId()));
+                return $this->redirectToRoute('appointment_show', array('id' => $product->getId()));
             }
 
 
 
-        return $this->render('products/new.html.twig', array(
+        return $this->render('appointment/new.html.twig', array(
         'product' => $product,
         'form' => $form->createView(),
           ));
@@ -82,14 +82,14 @@ class productsController extends Controller
     /**
      * Finds and displays a product entity.
      *
-     * @Route("/{id}", name="products_show")
+     * @Route("/{id}", name="appointment_show")
      * @Method("GET")
      */
-    public function showAction(products $product)
+    public function showAction(appointment $product)
     {
         $deleteForm = $this->createDeleteForm($product);
 
-        return $this->render('products/show.html.twig', array(
+        return $this->render('appointment/show.html.twig', array(
             'product' => $product,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -98,13 +98,13 @@ class productsController extends Controller
     /**
      * Displays a form to edit an existing product entity.
      *
-     * @Route("/{id}/edit", name="products_edit")
+     * @Route("/{id}/edit", name="appointment_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, products $product)
+    public function editAction(Request $request, appointment $product)
     {
         $deleteForm = $this->createDeleteForm($product);
-        $editForm = $this->createForm('intakeBundle\Form\productsType', $product);
+        $editForm = $this->createForm('intakeBundle\Form\appointmentType', $product);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -128,10 +128,10 @@ class productsController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('products_edit', array('id' => $product->getId()));
+            return $this->redirectToRoute('appointment_edit', array('id' => $product->getId()));
         }
 
-        return $this->render('products/edit.html.twig', array(
+        return $this->render('appointment/edit.html.twig', array(
             'product' => $product,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -141,10 +141,10 @@ class productsController extends Controller
     /**
      * Deletes a product entity.
      *
-     * @Route("/{id}", name="products_delete")
+     * @Route("/{id}", name="appointment_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, products $product)
+    public function deleteAction(Request $request, appointment $product)
     {
         $form = $this->createDeleteForm($product);
         $form->handleRequest($request);
@@ -155,20 +155,20 @@ class productsController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('products_index');
+        return $this->redirectToRoute('appointment_index');
     }
 
     /**
      * Creates a form to delete a product entity.
      *
-     * @param products $product The product entity
+     * @param appointment $product The product entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(products $product)
+    private function createDeleteForm(appointment $product)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('products_delete', array('id' => $product->getId())))
+            ->setAction($this->generateUrl('appointment_delete', array('id' => $product->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;
